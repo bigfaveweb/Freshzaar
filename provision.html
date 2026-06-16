@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FreshMart | Products</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --bg:#f7f7f7;
+    --card:#ffffff;
+    --text:#222;
+    --primary:#ff7b00;
+    --shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+.dark{
+    --bg:#0f1117;
+    --card:#181c24;
+    --text:#f5f5f5;
+    --shadow:0 10px 25px rgba(0,0,0,.4);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background: var(--bg);
+    color: var(--text);
+    transition: .3s;
+    padding-top: 90px;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+}
+
+/* NAV */
+nav .container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 0;
+}
+
+
+.logo{
+    font-size:26px;
+    font-weight:700;
+}
+
+.logo span{ color:var(--primary); }
+
+.toggle-btn{
+    background:var(--primary);
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:25px;
+    cursor:pointer;
+}
+
+/* SEARCH */
+.search-bar{
+    display:flex;
+    justify-content:center;
+    margin:25px 0;
+}
+
+.search-bar input{
+    width:60%;
+    padding:15px;
+    border-radius:30px;
+    border:1px solid #ccc;
+    outline:none;
+}
+
+/* FILTER */
+.filters{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+
+.filter-btn{
+    padding:10px 15px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+    background:var(--card);
+    color:var(--text);
+    box-shadow:var(--shadow);
+}
+.menu-btn{
+    display:none;
+    background:none;
+    border:none;
+    font-size:28px;
+    cursor:pointer;
+    color:var(--text);
+}
+
+.nav-links{
+    display:flex;
+    list-style:none;
+    gap:20px;
+}
+nav{
+  
+    top:0;
+    left:0;
+    width:100%;
+    background:var(--card);
+    box-shadow:var(--shadow);
+   transform: translateY(-87px);
+}
+.nav-links a{
+    text-decoration:none;
+    color:var(--text);
+    font-weight:500;
+}
+
+/* Mobile */
+@media(max-width:768px){
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--card);
+    z-index: 1000;
+    box-shadow: var(--shadow);
+}
+    nav .container{
+        
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .nav-links{
+        display:none;
+        position:absolute;
+        top:70px;
+        left:0;
+        width:100%;
+        background:var(--card);
+        flex-direction:column;
+        text-align:center;
+        padding:20px 0;
+        border-radius:15px;
+        box-shadow:var(--shadow);
+    }
+
+    .nav-links.active{
+        display:flex;
+        
+    }
+}
+
+/* PRODUCTS */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:20px;
+    padding-bottom:40px;
+}
+
+.card{
+    background:var(--card);
+    padding:20px;
+    border-radius:18px;
+    box-shadow:var(--shadow);
+    text-align:center;
+    transition:.3s;
+}
+
+.card:hover{ transform:translateY(-8px); }
+
+.card img{
+    width:100px;
+    height:100px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.price{
+    color:var(--primary);
+    font-weight:700;
+    margin:10px 0;
+}
+
+.btn{
+    display:inline-block;
+    padding:10px 15px;
+    background:var(--primary);
+    color:white;
+    border-radius:20px;
+    text-decoration:none;
+    font-size:14px;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    background:var(--card);
+    margin-top:40px;
+}
+.premium-footer{
+    background:var(--card);
+    margin-top:80px;
+    padding:70px 0 20px;
+    box-shadow:0 -5px 30px rgba(0,0,0,.08);
+}
+
+.footer-top{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:40px;
+    margin-bottom:40px;
+}
+
+.footer-brand h2{
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+.footer-brand span{
+    color:var(--primary);
+}
+
+.footer-brand p{
+    opacity:.8;
+    line-height:1.8;
+}
+
+.footer-links h4{
+    margin-bottom:20px;
+    color:var(--primary);
+}
+
+.footer-links a{
+    display:block;
+    text-decoration:none;
+    color:var(--text);
+    margin-bottom:12px;
+    transition:.3s;
+}
+
+.footer-links a:hover{
+    transform:translateX(5px);
+    color:var(--primary);
+}
+
+.footer-bottom{
+    border-top:1px solid rgba(128,128,128,.2);
+    padding-top:25px;
+    text-align:center;
+}
+
+.footer-bottom p{
+    margin:8px 0;
+    opacity:.8;
+}
+
+@media(max-width:900px){
+    .footer-top{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div class="container">
+    <div class="logo">Fresh<span>zaar</span></div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="provision.html">Products</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <button class="toggle-btn" onclick="toggleMode()">🌙 Dark Mode</button>
+</div>
+</nav>
+<div class="search-bar">
+<input type="text" id="search" placeholder="Search products...">
+</div>
+
+<div class="filters">
+<button class="filter-btn" onclick="filterProducts('all')">All</button>
+<button class="filter-btn" onclick="filterProducts('grains')">Grains</button>
+<button class="filter-btn" onclick="filterProducts('oil')">Oil</button>
+<button class="filter-btn" onclick="filterProducts('drinks')">Drinks</button>
+<button class="filter-btn" onclick="filterProducts('snacks')">Snacks</button>
+<button class="filter-btn" onclick="filterProducts('vegetable')">Vegetables</button>
+<button class="filter-btn" onclick="filterProducts('spice')">spicies</button>
+</div>
+
+<section class="products">
+<div class="container">
+<div class="grid" id="productGrid"></div>
+</div>
+</section>
+
+<footer>
+<p>Freshzaar • Premium Food & Groceries</p>
+</footer>
+<footer class="premium-footer">
+    <div class="container">
+
+        <div class="footer-top">
+
+            <div class="footer-brand">
+                <h2>Fresh<span>zaar</span></h2>
+                <p>
+                    Bringing freshness, quality provisions, and trusted foodstuff
+                    to homes, restaurants, and businesses every day.
+                </p>
+            </div>
+ <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="provision.html">Products</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+                 <button class="toggle-btn" onclick="toggleMode()">🌙 Dark Mode</button>
+            </div>
+
+          <div class="footer-links">
+                <h4>Categories</h4>
+                <a href="provision.html?category=grains">Rice & Grains</a>
+                <a href="provision.html?category=drinks">Beverages</a>
+                <a href="provision.html?category=spice">Spices</a>
+                <a href="provision.html?category=vegetable">Vegetables
+</a>
+                <a href="provision.html?category=all">Foodstuff</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <a href="#">📍 Lagos, Nigeria</a>
+                <a href="#">📞 +234 800 000 0000</a>
+                <a href="#">✉️ support@freshmart.com</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                Crafted with ❤️ for food lovers • Delivering freshness one basket at a time.
+            </p>
+
+            <p>
+                © 2026 Freshzaar Provisions • Premium Groceries & Foodstuff Marketplace
+            </p>
+        </div>
+
+    </div>
+</footer>
+
+<script>
+
+/* =========================
+   EASY PRODUCT MANAGEMENT
+   JUST ADD YOUR PRODUCTS HERE
+   ========================= */
+
+const products = [
+     {
+        name: "red-bell pepper",
+        price: "₦12,500",
+        category: "vegetable",
+        image: "redbell.webp"
+    },
+    {
+        name: "tomato",
+        price: "₦10,000",
+        category: "vegetable",
+        image: "tomato.webp"
+    },
+    {
+        name: "kitchen glory",
+        price: "₦300",
+        category: "spice",
+        image: "kitchen.webp"
+    },
+    {
+        name: "Gino ",
+        price: "₦400",
+        category: "spice",
+        image: "gino.jpg"
+    },
+       {
+        name: "power oil 4.5 litre",
+        price: "₦12,500",
+        category: "oil",
+        image: "poweroil.webp"
+    },
+    {
+        name: "power oil mini",
+        price: "₦300",
+        category: "oil",
+        image: "mini.webp"
+    },
+    {
+        name: "lasor chicken",
+        price: "₦300",
+        category: "spice",
+        image: "lasor.jpg"
+    },
+    {
+        name: "lasor pepper-soup",
+        price: "₦400",
+        category: "spice",
+        image: "lasorp.jpg"
+    },
+      {
+        name: "Palm oil 5litre",
+        price: "₦8,500",
+        category: "oil",
+        image: "palm5.webp"
+    },
+    {
+        name: "maggi(Liquid season)",
+        price: "₦6,200",
+        category: "spice",
+        image: "liquid.webp"
+    },
+    {
+        name: "onion",
+        price: "₦100",
+        category: "vegetable",
+        image: "onion.webp"
+    },
+    {
+        name: "spring onion",
+        price: "₦2,000",
+        category: "vegetable",
+        image: "spring.jpg"
+    },
+    {
+        name: "Golden Sella Rice 5kg",
+        price: "₦8,500",
+        category: "grains",
+        image: "golden.webp"
+    },
+    {
+        name: "Sunflower Cooking Oil 2L",
+        price: "₦6,200",
+        category: "oil",
+        image: "sun.webp"
+    },
+    {
+        name: "Coca-Cola 50cl Pack",
+        price: "₦3,000",
+        category: "drinks",
+        image: "coke.webp"
+    },
+    {
+        name: "Indomietable Noodles Carton",
+        price: "₦12,000",
+        category: "snacks",
+        image: "indomie.webp"
+    },
+       {
+        name: "Indomietable Noodle ",
+        price: "₦400",
+        category: "snacks",
+        image: "indomietable.webp"
+    },
+       {
+        name: "coke",
+        price: "₦500",
+        category: "drinks",
+        image: "anothercoke.webp"
+    },
+       {
+        name: "Super-Pack Noodles",
+        price: "₦400",
+        category: "snacks",
+        image: "super.webp"
+    },
+    {
+        name: "Spaghetti Premium 500g",
+        price: "₦1,200",
+        category: "grains",
+        image: "onespag.webp"
+    },
+     {
+        name: "Three Crown milk 160g ",
+        price: "₦400",
+        category: "milo & milk",
+        image: "three.webp"
+    },
+       {
+        name: "mr.chef salt 500g",
+        price: "₦500",
+        category: "spice",
+        image: "salt500.webp"
+    },
+       {
+        name: "Gin Tomato mix 400g",
+        price: "₦2,400",
+        category: "vegetable",
+        image: "gino.webp"
+    },
+    {
+        name: "mr.chef salt 250g",
+        price: "₦300",
+        category: "spice",
+        image: "salt.webp"
+    },
+       {
+        name: "palm oil 2.5 litre ",
+        price: "₦400",
+        category: "oil",
+        image: "palm.webp"
+    },
+       {
+        name: "melon seed (equsi)",
+        price: "₦500",
+        category: "vegetable",
+        image: "egu.webp"
+    },
+       {
+        name: "Chopped Okro",
+        price: "₦2,400",
+        category: "vegetable",
+        image: "okro.webp"
+    },
+    {
+        name: "ugu leaf",
+        price: "₦300",
+        category: "vegetable",
+        image: "ugu.webp"
+    }
+    
+];
+
+/* RENDER */
+function renderProducts(list){
+    const grid = document.getElementById("productGrid");
+    grid.innerHTML = "";
+
+    list.forEach(p => {
+        grid.innerHTML += `
+        <div class="card">
+            <img src="${p.image}">
+            <h3>${p.name}</h3>
+            <p class="price">${p.price}</p>
+            <a href="#" class="btn">Add to Cart</a>
+        </div>
+        `;
+    });
+}
+
+renderProducts(products);
+
+/* FILTER */
+function toggleMenu(){
+    document.getElementById("navLinks").classList.toggle("active");
+}
+function filterProducts(category){
+    if(category === "all"){
+        renderProducts(products);
+    }else{
+        renderProducts(products.filter(p => p.category === category));
+    }
+}
+
+/* SEARCH */
+document.getElementById("search").addEventListener("input", function(){
+    let value = this.value.toLowerCase();
+
+    let filtered = products.filter(p =>
+        p.name.toLowerCase().includes(value)
+    );
+
+    renderProducts(filtered);
+});
+window.onload = function () {
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category");
+
+  if (category) {
+    filterProducts(category);
+  } else {
+    renderProducts(products);
+  }
+};
+/* DARK MODE */
+function toggleMode(){
+    document.body.classList.toggle("dark");
+
+    const btn = document.querySelector(".toggle-btn");
+
+    if(document.body.classList.contains("dark")){
+        btn.textContent = "☀️ Bright Mode";
+    } else {
+        btn.textContent = "🌙 Dark Mode";
+    }
+}
+
+</script>
+
+</body>
+</html>
